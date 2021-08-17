@@ -1,4 +1,3 @@
-
 <template>
   <div id="app">
 
@@ -73,7 +72,8 @@
                   <div class="item-inner">
                     <div class="item-title item-label">Username</div>
                     <div class="item-input-wrap">
-                      <input type="text" name="username" placeholder="Your username" value="${username}" @input="${updateUsername}"/>
+                      <input type="text" name="username" placeholder="Your username" value="${username}"
+                        @input="${updateUsername}" />
 
                     </div>
                   </div>
@@ -82,7 +82,8 @@
                   <div class="item-inner">
                     <div class="item-title item-label">Password</div>
                     <div class="item-input-wrap">
-                      <input type="password" name="password" placeholder="Your password" value="${password}" @input="${updatePassword}"/>
+                      <input type="password" name="password" placeholder="Your password" value="${password}"
+                        @input="${updatePassword}" />
 
                     </div>
                   </div>
@@ -96,7 +97,8 @@
 
                 </li>
               </ul>
-              <div class="block-footer">Some text about login information.<br/>Click "Sign In" to close Login Screen</div>
+              <div class="block-footer">Some text about login information.<br />Click "Sign In" to close Login Screen
+              </div>
             </div>
           </div>
         </div>
