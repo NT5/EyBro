@@ -1,0 +1,125 @@
+<template>
+    <div class="page" data-name="cuestionario">
+        <div class="navbar">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="/" class="link">
+                        <i class="icon icon-back"></i>
+                    </a>
+                </div>
+                <div class="title">👊 ¡Ey! Bro...</div>
+            </div>
+        </div>
+        <div class="page-content display-flex flex-direction-column justify-content-center">
+            <div class="block block-strong">
+                <div class="card">
+                    <div class="card-content card-content-padding text-align-center">
+                        <div class="row">
+                            <div class="col">
+                                <h1>${pregunta.pregunta_texto}</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="list">
+                                    <ul>
+                                        ${pregunta.posibles_respuestas.map((item) => $h`
+                                        <li>
+                                            <label class="item-radio item-content">
+                                                <input type="radio" name="radio" value="${item.id_respuesta}" />
+                                                <i class="icon icon-radio"></i>
+                                                <div class="item-inner">
+                                                    <div class="item-title">${item.respuesta_texto}</div>
+                                                </div>
+                                            </label>
+                                        </li>
+                                        `)}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row block">
+                <div class="col">
+                    <button @click=${siguientePregunta} class="button button-large button-fill">
+                        <i class="icon material-icons">play_arrow</i> Siguiente >>>
+                    </button>
+                </div>
+            </div>
+            <div class="row block">
+                <div class="col">
+                    <a href="/" class="button button-large button-fill">
+                        <i class="icon material-icons">play_arrow</i> Salir
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default (props, { $, $f7, $f7router, $store, $on, $update }) => {
+        const config = $f7.config;
+
+        const cuestionario_id = props.id_cuestionario;
+        const pregunta_id = props.id_pregunta;
+
+        const pregunta_actual = $store.getters.pregunta_actual;
+
+        let pregunta = {
+            id_cuestionario: -1,
+            id_pregunta: -1,
+            pregunta_texto: '...',
+            posibles_respuestas: [
+                {
+                    id_pregunta: -1,
+                    id_respuesta: -1,
+                    respuesta_texto: "..."
+                }
+            ]
+        };
+
+        const cargarPregunta = (cuestionario_id, pregunta_id) => {
+            let api_url = config.api_url;
+            let request_url = `${api_url}/preguntas/getPreguntaFromId`;
+
+            $f7.request({
+                url: request_url,
+                method: 'POST',
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                data: {
+                    cuestionario_id: cuestionario_id,
+                    pregunta_id: pregunta_id
+                }
+            }).then((response) => {
+                let json = response.data.pregunta;
+                pregunta = json;
+                console.log(json);
+                $update();
+            });
+        };
+
+        const siguientePregunta = (props, context) => {
+            let siguiente_pregunta = $store.getters.pregunta_siguiente.value;
+            $store.dispatch('setPreguntaActual', siguiente_pregunta);
+
+            $f7router.navigate({
+                name: 'pregunta-cuestionario',
+                params: {
+                    id_cuestionario: cuestionario_id,
+                    id_pregunta: siguiente_pregunta.id_pregunta
+                },
+            });
+        };
+
+        $on('pageInit', (e, page) => {
+            console.log(cuestionario_id, pregunta_id);
+            cargarPregunta(cuestionario_id, pregunta_id)
+        });
+
+        return $render;
+    };
+</script>

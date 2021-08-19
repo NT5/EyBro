@@ -1,0 +1,52 @@
+<template>
+    <div class="page" data-name="cuestionario">
+        <div class="navbar">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                    </a>
+                </div>
+                <div class="title">👊 ¡Ey! Bro...</div>
+            </div>
+        </div>
+        <div class="page-content display-flex flex-direction-column justify-content-center">
+            <div class="block block-strong">
+                <div class="card">
+                    <div class="card-content card-content-padding">
+                        <h1>${cuestionario.value.mensaje_bienvenida}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row block">
+                <div class="col">
+                    <a href="/pregunta-cuestionario/cuestionario/${cuestionario.value.cuestionario_id}/pregunta/${pregunta_actual.value.id_pregunta}"
+                        class="button button-large button-fill" data-transition="f7-cover">
+                        <i class="icon material-icons">play_arrow</i> Empecemos!
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default (props, { $, $f7, $f7router, $store, $on, $update }) => {
+        const config = $f7.config;
+
+        const cuestionario = $store.getters.cuestionario;
+        const pregunta_actual = $store.getters.pregunta_actual;
+
+        $on('pageMounted', (e, page) => {
+            let cuestionario_id = config.cuestionario_id;
+            let api_url = config.api_url;
+
+            $store.dispatch('cargarCuestionario', {
+                cuestionario_id: cuestionario_id,
+                api_url: api_url
+            });
+        });
+
+        return $render;
+    };
+</script>

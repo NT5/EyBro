@@ -65,6 +65,12 @@
               data-login-screen="#my-login-screen">Login Screen</a>
           </div>
         </div>
+        <hr />
+        <div class="row">
+          <div class="col">
+            <a href="/cuestionario/" class="button button-raised button-fill">Cuestionario</a>
+          </div>
+        </div>
       </div>
 
       <div class="block-title">Panels</div>

@@ -1,35 +1,58 @@
-
-import { createStore } from 'framework7';
+import { createStore, request } from 'framework7';
 
 const store = createStore({
   state: {
-    products: [
-      {
-        id: '1',
-        title: 'Apple iPhone 8',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi tempora similique reiciendis, error nesciunt vero, blanditiis pariatur dolor, minima sed sapiente rerum, dolorem corrupti hic modi praesentium unde saepe perspiciatis.'
-      },
-      {
-        id: '2',
-        title: 'Apple iPhone 8 Plus',
-        description: 'Velit odit autem modi saepe ratione totam minus, aperiam, labore quia provident temporibus quasi est ut aliquid blanditiis beatae suscipit odio vel! Nostrum porro sunt sint eveniet maiores, dolorem itaque!'
-      },
-      {
-        id: '3',
-        title: 'Apple iPhone X',
-        description: 'Expedita sequi perferendis quod illum pariatur aliquam, alias laboriosam! Vero blanditiis placeat, mollitia necessitatibus reprehenderit. Labore dolores amet quos, accusamus earum asperiores officiis assumenda optio architecto quia neque, quae eum.'
-      },
-    ]
+    cuestionario: {
+      cuestionario_id: -1,
+      descripcion: '...',
+      mensaje_bienvenida: '...',
+      mensaje_despedida: '...',
+      preguntas: [
+        {
+          id_pregunta: -1
+        }
+      ]
+    },
+    pregunta_actual: -1
   },
   getters: {
-    products({ state }) {
-      return state.products;
+    cuestionario: ({ state }) => state.cuestionario,
+    pregunta_actual: ({ state }) => state.pregunta_actual,
+    pregunta_siguiente: ({ state }) => {
+      let actual = state.pregunta_actual;
+      let index = state.cuestionario.preguntas.findIndex((arr) => {return arr.id_pregunta === actual.id_pregunta});
+      return state.cuestionario.preguntas[index + 1];
     }
   },
   actions: {
-    addProduct({ state }, product) {
-      state.products = [...state.products, product];
+    cargarCuestionario({ state, dispatch }, { cuestionario_id, api_url }) {
+      let request_url = `${api_url}/cuestionarios/getCuestionarioById`;
+      console.log(`[+] Pidiendo datos desde ${api_url}`);
+      request({
+        url: request_url,
+        method: 'POST',
+        contentType: 'application/x-www-form-urlencoded',
+        dataType: 'json',
+        data: {
+          cuestionario_id: cuestionario_id
+        }
+      }).then((response) => {
+        let cuestionario = response.data.cuestionario;
+
+        state.cuestionario = cuestionario;
+
+        let [primera_pregunta] = state.cuestionario.preguntas;
+        dispatch('setPreguntaActual', primera_pregunta);
+        console.log(cuestionario);
+
+      }).catch((err) => {
+        console.error(err);
+      });
     },
+    setPreguntaActual({ state }, pregunta) {
+      state.pregunta_actual = pregunta;
+    }
   },
-})
+});
+
 export default store;
