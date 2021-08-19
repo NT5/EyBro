@@ -81,7 +81,9 @@
             ]
         };
 
+        // Carga la pregunta según un cuestionario y pregunta
         const cargarPregunta = (cuestionario_id, pregunta_id) => {
+            // API Endpoint
             let api_url = config.api_url;
             let request_url = `${api_url}/preguntas/getPreguntaFromId`;
 
@@ -95,14 +97,25 @@
                     pregunta_id: pregunta_id
                 }
             }).then((response) => {
+                console.log(`[+] Datos cargados ${request_url}`);
                 let json = response.data.pregunta;
+
+                // Variable global de la pagina
                 pregunta = json;
-                console.log(json);
+                console.log(pregunta);
                 $update();
             });
         };
 
         const siguientePregunta = (props, context) => {
+            let respuesta_pregunta = $('input[name=radio]:checked').val();
+            if (!respuesta_pregunta) {
+                $f7.dialog.alert(`Por favor responde la pregunta para continuar.`);
+                return;
+            }
+
+            console.log(`[?] Pregunta respondida: ${respuesta_pregunta}`);
+
             let siguiente_pregunta = $store.getters.pregunta_siguiente.value;
             $store.dispatch('setPreguntaActual', siguiente_pregunta);
 
@@ -116,7 +129,12 @@
         };
 
         $on('pageInit', (e, page) => {
-            console.log(cuestionario_id, pregunta_id);
+            console.log(`[+] Cargando pregunta: [Cuestionario: ${cuestionario_id} | Pregunta: ${pregunta_id}]`);
+
+            // Se remueven los elementos del radio que estén clickeados
+            $('input[name=radio]:checked').prop('checked', false);
+
+            // Se cargan los datos de la pregunta desde el servidor
             cargarPregunta(cuestionario_id, pregunta_id)
         });
 
