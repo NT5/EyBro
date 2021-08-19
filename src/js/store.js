@@ -21,7 +21,8 @@ const store = createStore({
     pregunta_siguiente: ({ state }) => {
       let actual = state.pregunta_actual;
       let index = state.cuestionario.preguntas.findIndex((arr) => {return arr.id_pregunta === actual.id_pregunta});
-      return state.cuestionario.preguntas[index + 1];
+      console.log(`Siguiente pregunta index ${index}`);
+      return (index >= 0 && (index + 1) < state.cuestionario.preguntas.length ? state.cuestionario.preguntas[index + 1] : state.cuestionario.preguntas[0]);
     }
   },
   actions: {
