@@ -90,6 +90,7 @@
 
         const pregunta_actual = $store.getters.pregunta_actual;
         const visitante = $store.getters.visitante;
+        const store_cuestionario = $store.getters.cuestionario;
 
         let pregunta = {
             id_cuestionario: -1,
@@ -153,7 +154,7 @@
                     id_respuesta: respuesta_id
                 }
             }).then((response) => {
-                console.log(`[+] Pregunta respondida ${request_url}`);
+                console.log(`[+] Pregunta respondida en el servidor ${request_url}`);
                 let data = response.data;
                 console.log(data);
             });
@@ -171,15 +172,23 @@
             console.log(`[?] Pregunta respondida: ${respuesta_pregunta}`);
 
             let siguiente_pregunta = $store.getters.pregunta_siguiente.value;
-            $store.dispatch('setPreguntaActual', siguiente_pregunta);
 
-            $f7router.navigate({
-                name: 'pregunta-cuestionario',
-                params: {
-                    id_cuestionario: cuestionario_id,
-                    id_pregunta: siguiente_pregunta.id_pregunta
-                },
-            });
+            console.log(`Siguiente pregunta`, siguiente_pregunta);
+            if (!siguiente_pregunta) {
+                $f7.dialog.alert(`Gracias por responder mis preguntas! 🙌 tu respuesta serán de gran ayuda`);
+                $f7router.navigate({
+                    name: 'home'
+                });
+            } else {
+                $store.dispatch('setPreguntaActual', siguiente_pregunta);
+                $f7router.navigate({
+                    name: 'pregunta-cuestionario',
+                    params: {
+                        id_cuestionario: cuestionario_id,
+                        id_pregunta: siguiente_pregunta.id_pregunta
+                    },
+                });
+            }
         };
 
         $on('pageInit', (e, page) => {

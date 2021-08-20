@@ -36,8 +36,9 @@
 
         const cuestionario = $store.getters.cuestionario;
         const pregunta_actual = $store.getters.pregunta_actual;
+        const visitante = $store.getters.visitante;
 
-        $on('pageMounted', (e, page) => {
+        const cargarCuestionario = () => {
             let cuestionario_id = config.cuestionario_id;
             let api_url = config.api_url;
 
@@ -45,6 +46,27 @@
                 cuestionario_id: cuestionario_id,
                 api_url: api_url
             });
+        };
+
+        $on('pageMounted', (e, page) => {
+            let visitante_activo = visitante.value.id_visitante;
+
+            if (visitante_activo) {
+                console.log(`[+] Visitante listo, cargando cuestionario`);
+                cargarCuestionario();
+            } else {
+                console.warn(`[-] Aun no se registra el visitante...`);
+                $f7.loginScreen.open('#login-datos-visitante');
+            }
+        });
+
+        $('.login-screen').on('loginscreen:open', function (e) {
+            console.log('Login screen open')
+        });
+
+        $('.login-screen').on('loginscreen:close', function (e) {
+            console.log('Login screen close');
+            cargarCuestionario();
         });
 
         return $render;

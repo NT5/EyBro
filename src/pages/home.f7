@@ -62,7 +62,7 @@
           </div>
           <div class="col-50">
             <a href="#" class="button button-raised button-fill login-screen-open"
-              data-login-screen="#my-login-screen">Login Screen</a>
+              data-login-screen="#login-datos-visitante">Login Screen</a>
           </div>
         </div>
         <hr />

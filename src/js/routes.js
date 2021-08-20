@@ -13,6 +13,7 @@ import PreguntaCuestionarioPage from '../pages/pregunta-cuestionario.f7';
 var routes = [
   {
     path: '/',
+    name: 'home',
     component: HomePage,
   },
   {

@@ -61,7 +61,7 @@
     </div>
 
     <!-- Datos del usuario -->
-    <div class="login-screen" id="my-login-screen">
+    <div class="login-screen" id="login-datos-visitante">
       <div class="view">
         <div class="page">
           <div class="page-content login-screen-content">
