@@ -19,76 +19,55 @@
     <div class="page-content">
       <div class="display-flex justify-content-space-between align-items-flex-start">
         <div class="flex-shrink-0"></div>
-        <div class="align-self-center">
+        <div class="align-self-center content-box-wrap">
           <div class="block block-strong">
-            <p>Here is your blank Framework7 app. Let's see what we have here.</p>
+            <h2 class="text-align-center">
+              La aplicación digital “¡Ey! Bro… Solo Entre Vos y Yo… es una alternativa digital, amigable, fácil,
+              accesible y ajustada a la detección de diferentes delitos de los cuales están padeciendo muchos chavalos y
+              chavalas de nuestras edad, e incluso de menos edad, que por miedo a reacciones adversas no logran romper
+              el silencio ante algún adulto del cual están siendo víctimas en el entorno familiar, escolar, comunitario
+              o social, y pasan muchas catástrofes emocionales y físicas que día a día los y las sume en escenarios que
+              posiblemente acaben con su vida. Desde nuestras capacidades queremos brindar un espacio virtual que
+              facilite confidencialidad y confianza para los usuarios, que pretendemos que sea la población joven
+              quienes accedan a la App y puedan contar lo que están viviendo para solicitar la ayuda necesaria que las
+              autoridades e instituciones correspondientes puedan brindarles.
+            </h2>
+          </div>
+          <div class="block block-strong">
+            <div class="row">
+              <div class="col">
+                <a href="#" class="button button-raised button-fill login-screen-open color-teal"
+                  data-login-screen="#login-datos-visitante">
+                  <i class="icon material-icons">help</i> Cuéntame quien eres!
+                </a>
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col">
+                <a href="/cuestionario/" class="button button-raised button-fill color-pink">
+                  <i class="icon material-icons">favorite</i>
+                  Empezar el cuestionario
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="list">
+            <ul>
+              <li>
+                <a href="/about/" class="item-content item-link">
+                  <div class="item-inner">
+                    <div class="item-title">
+                      <i class="icon material-icons">info</i>
+                      Acerca de la aplicación
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
         <div class="align-self-flex-end"></div>
-      </div>
-      <div class="block-title">Navigation</div>
-      <div class="list">
-        <ul>
-          <li>
-            <a href="/about/" class="item-content item-link">
-              <div class="item-inner">
-                <div class="item-title">About</div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/form/" class="item-content item-link">
-              <div class="item-inner">
-                <div class="item-title">Form</div>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="block-title">Modals</div>
-      <div class="block block-strong">
-        <div class="row">
-          <div class="col-50">
-            <a href="#" class="button button-raised button-fill popup-open" data-popup="#my-popup">Popup</a>
-          </div>
-          <div class="col-50">
-            <a href="#" class="button button-raised button-fill login-screen-open"
-              data-login-screen="#login-datos-visitante">Login Screen</a>
-          </div>
-        </div>
-        <hr />
-        <div class="row">
-          <div class="col">
-            <a href="/cuestionario/" class="button button-raised button-fill">Cuestionario</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-title">Panels</div>
-      <div class="block block-strong">
-        <div class="row">
-          <div class="col-50">
-            <a href="#" class="button button-raised button-fill panel-open" data-panel="left">Left Panel</a>
-          </div>
-          <div class="col-50">
-            <a href="#" class="button button-raised button-fill panel-open" data-panel="right">Right Panel</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="list links-list">
-        <ul>
-          <li>
-            <a href="/dynamic-route/blog/45/post/125/?foo=bar#about">Dynamic (Component) Route</a>
-          </li>
-          <li>
-            <a href="/load-something-that-doesnt-exist/">Default Route (404)</a>
-          </li>
-          <li>
-            <a href="/request-and-load/user/123456/">Request Data & Load</a>
-          </li>
-        </ul>
       </div>
     </div>
   </div>

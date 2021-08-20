@@ -6,32 +6,32 @@
         <div class="left">
           <a href="#" class="link back">
             <i class="icon icon-back"></i>
-            <span class="if-not-md">Back</span>
           </a>
         </div>
-        <div class="title">About</div>
+        <div class="title"><i class="icon material-icons">info</i>Información</div>
       </div>
     </div>
     <div class="page-content">
-      <div class="block-title">About My App</div>
-      <div class="block block-strong">
-        <p>Fugiat perspiciatis excepturi, soluta quod non ullam deleniti. Nobis sint nemo consequuntur, fugiat. Eius
-          perferendis animi autem incidunt vel quod tenetur nostrum, voluptate omnis quasi quidem illum consequuntur, a,
-          quisquam.</p>
-        <p>Laudantium neque magnam vitae nemo quam commodi, in cum dolore obcaecati laborum, excepturi harum, optio qui,
-          consequuntur? Obcaecati dolor sequi nesciunt culpa quia perspiciatis, reiciendis ex debitis, ut tenetur alias.
-        </p>
-      </div>
-      <div class="block">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni molestiae laudantium dignissimos est nobis
-          delectus nemo ea alias voluptatum architecto, amet similique, saepe iste consectetur in repellat ut minus
-          quibusdam!</p>
-        <p>Molestias et distinctio porro nesciunt ratione similique, magni doloribus, rerum nobis, aliquam quae
-          reiciendis quasi modi. Nam a recusandae, fugiat in ea voluptates fuga eius, velit corrupti reprehenderit
-          dignissimos consequatur!</p>
-        <p>Blanditiis, cumque quo adipisci. Molestiae, dolores dolorum quos doloremque ipsa ullam eligendi commodi
-          deserunt doloribus inventore magni? Ea mollitia veniam nostrum nihil, iusto doloribus a at! Ea molestiae ullam
-          delectus!</p>
+
+      <div class="display-flex justify-content-space-between align-items-flex-start">
+        <div class="flex-shrink-0"></div>
+        <div class="align-self-center content-box-wrap">
+          <div class="block-title"><i class="icon material-icons">info</i> Acerca de la aplicación</div>
+          <div class="block block-strong text-align-center">
+            <p>
+              La aplicación digital “¡Ey! Bro… Solo Entre Vos y Yo… es una alternativa digital, amigable, fácil,
+              accesible y ajustada a la detección de diferentes delitos de los cuales están padeciendo muchos chavalos y
+              chavalas de nuestras edad, e incluso de menos edad, que por miedo a reacciones adversas no logran romper
+              el silencio ante algún adulto del cual están siendo víctimas en el entorno familiar, escolar, comunitario
+              o social, y pasan muchas catástrofes emocionales y físicas que día a día los y las sume en escenarios que
+              posiblemente acaben con su vida. Desde nuestras capacidades queremos brindar un espacio virtual que
+              facilite confidencialidad y confianza para los usuarios, que pretendemos que sea la población joven
+              quienes accedan a la App y puedan contar lo que están viviendo para solicitar la ayuda necesaria que las
+              autoridades e instituciones correspondientes puedan brindarles.
+            </p>
+          </div>
+        </div>
+        <div class="align-self-flex-end"></div>
       </div>
     </div>
   </div>
