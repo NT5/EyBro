@@ -2,6 +2,7 @@ import { createStore, request } from 'framework7';
 
 const store = createStore({
   state: {
+    visitante: {},
     cuestionario: {
       cuestionario_id: -1,
       descripcion: '...',
@@ -16,11 +17,12 @@ const store = createStore({
     pregunta_actual: -1
   },
   getters: {
+    visitante: ({ state }) => state.visitante,
     cuestionario: ({ state }) => state.cuestionario,
     pregunta_actual: ({ state }) => state.pregunta_actual,
     pregunta_siguiente: ({ state }) => {
       let actual = state.pregunta_actual;
-      let index = state.cuestionario.preguntas.findIndex((arr) => {return arr.id_pregunta === actual.id_pregunta});
+      let index = state.cuestionario.preguntas.findIndex((arr) => { return arr.id_pregunta === actual.id_pregunta });
       return (index >= 0 && (index + 1) < state.cuestionario.preguntas.length ? state.cuestionario.preguntas[index + 1] : state.cuestionario.preguntas[0]);
     }
   },
@@ -51,6 +53,9 @@ const store = createStore({
     },
     setPreguntaActual({ state }, pregunta) {
       state.pregunta_actual = pregunta;
+    },
+    setVisitante({ state }, visitante) {
+      state.visitante = visitante;
     }
   },
 });
