@@ -14,7 +14,7 @@
         <div class="page-content">
             <div class="display-flex justify-content-space-between align-items-flex-start">
                 <div class="flex-shrink-0"></div>
-                <div class="align-self-center content-box-warp">
+                <div class="align-self-center content-box-wrap">
                     <!-- Card de pregunta -->
                     <div class="block block-strong">
                         <div class="card">
@@ -30,11 +30,16 @@
                                             <ul>
                                                 ${pregunta.posibles_respuestas.map((item) => $h`
                                                 <li>
-                                                    <label class="item-radio item-content">
-                                                        <input type="radio" name="radio" value="${item.id_respuesta}" />
+                                                    <label class="item-radio item-content item-input-with-info">
+                                                        <input type="radio" name="radio" value="-1" />
                                                         <i class="icon icon-radio"></i>
                                                         <div class="item-inner">
-                                                            <div class="item-title">${item.respuesta_texto}</div>
+                                                            <div
+                                                                class="item-input-info text-align-left text-color-white">
+                                                                <p style="font-size: 1.5em;">
+                                                                    ${item.respuesta_texto}
+                                                                </p>
+                                                            </div>
                                                         </div>
                                                     </label>
                                                 </li>
@@ -58,8 +63,8 @@
                     </div>
                     <div class="row block">
                         <div class="col">
-                            <a href="/" class="button button-large button-fill">
-                                <i class="icon material-icons">play_arrow</i> Salir
+                            <a href="/" class="button button-large button-fill color-red">
+                                <i class="icon material-icons">close</i> Salir
                             </a>
                         </div>
                     </div>
@@ -81,9 +86,16 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="toolbar toolbar-bottom">
+                            <div class="toolbar-inner">
+                                <a href="#" class="button button-large button-fill popup-close">
+                                    <i class="icon material-icons">close</i>Salir
+                                </a>
+                            </div>
+                        </div>
                         <div class="page-content text-align-center">
                             <div class="block">
-                                <h1>${pregunta.mensaje}</h1>
+                                <h2>${pregunta.mensaje}</h2>
                             </div>
                         </div>
                     </div>

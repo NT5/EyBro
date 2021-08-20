@@ -26,7 +26,7 @@ var configPlugin = {
         config: {
             var_form: 'app_config',
             cuestionario_id: 1,
-            api_url: 'http://10.10.1.20/eybro-api/ajax'
+            api_url: (process.env.NODE_ENV === 'development' ? 'http://10.10.1.20/eybro-api/ajax' : 'https://eybro.mzdevocotal.com/api/ajax')
         }
     },
     on: {

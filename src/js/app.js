@@ -8,10 +8,6 @@ import '../css/framework7-custom.less';
 import '../css/icons.css';
 import '../css/app.less';
 
-// Librerías
-import { DeviceUUID } from 'device-uuid';
-window.DeviceUUID = DeviceUUID;
-
 // Import Routes
 import routes from './routes.js';
 

@@ -18,7 +18,7 @@
         <div class="align-self-center content-box-wrap">
           <div class="block-title"><i class="icon material-icons">info</i> Acerca de la aplicación</div>
           <div class="block block-strong text-align-center">
-            <p>
+            <h2>
               La aplicación digital “¡Ey! Bro… Solo Entre Vos y Yo… es una alternativa digital, amigable, fácil,
               accesible y ajustada a la detección de diferentes delitos de los cuales están padeciendo muchos chavalos y
               chavalas de nuestras edad, e incluso de menos edad, que por miedo a reacciones adversas no logran romper
@@ -28,7 +28,7 @@
               facilite confidencialidad y confianza para los usuarios, que pretendemos que sea la población joven
               quienes accedan a la App y puedan contar lo que están viviendo para solicitar la ayuda necesaria que las
               autoridades e instituciones correspondientes puedan brindarles.
-            </p>
+            </h2>
           </div>
         </div>
         <div class="align-self-flex-end"></div>

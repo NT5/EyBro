@@ -98,6 +98,8 @@
   }
 </style>
 <script>
+  import { v4 as uuidv4 } from 'uuid';
+
   export default (props, { $f7, $update, $on, $store }) => {
     // Plugin de configuración
     const config = $f7.config;
@@ -149,7 +151,7 @@
         contentType: 'application/x-www-form-urlencoded',
         dataType: 'json',
         data: {
-          uuid: new DeviceUUID().get(), // Librería uuid
+          uuid: uuidv4(), // Librería uuid
           identificador: JSON.stringify({ // Se crea un objeto y se convierte a string para enviarlo al servidor
             usuario: usuario,
             centro_estudio: centro_estudio,

@@ -18,8 +18,8 @@
                     <div class="block block-strong">
                         <div class="block block-strong">
                             <div class="card">
-                                <div class="card-content card-content-padding text-align-center">
-                                    <h1>${cuestionario.value.mensaje_despedida}</h1>
+                                <div class="card-content card-content-padding text-align-justify">
+                                    <h2>${cuestionario.value.mensaje_despedida}</h2>
                                 </div>
                             </div>
                         </div>
@@ -33,6 +33,12 @@
 <script>
     export default (props, { $, $f7, $f7router, $store, $on, $update }) => {
         const cuestionario = $store.getters.cuestionario;
+
+        $on('pageInit', (e, page) => {
+            // Se borra el visitante
+            $store.dispatch('setVisitante', {});
+        });
+
         return $render;
     };
 </script>
