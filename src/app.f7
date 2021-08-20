@@ -156,6 +156,7 @@
 </style>
 <script>
   export default (props, { $f7, $update, $on, $store }) => {
+    // Plugin de configuración
     const config = $f7.config;
 
     // Datos del usuario
@@ -166,6 +167,7 @@
     let tutor = 'Anónimo';
     let edad = 'Anónimo';
 
+    // Métodos para actualizar las variables locales de la pagina de registro
     const updateUsuario = (e) => {
       usuario = e.target.value;
       $update();
@@ -191,8 +193,11 @@
       $update();
     }
 
+    // Registra al visitante
     const registrarVisitante = () => {
       let api_url = config.api_url;
+
+      // API Endpoint
       let request_url = `${api_url}/visitante/registreVisitante`;
 
       $f7.request({
@@ -201,8 +206,8 @@
         contentType: 'application/x-www-form-urlencoded',
         dataType: 'json',
         data: {
-          uuid: new DeviceUUID().get(),
-          identificador: JSON.stringify({
+          uuid: new DeviceUUID().get(), // Librería uuid
+          identificador: JSON.stringify({ // Se crea un objeto y se convierte a string para enviarlo al servidor
             usuario: usuario,
             centro_estudio: centro_estudio,
             departamento: departamento,
@@ -212,19 +217,26 @@
           })
         }
       }).then((response) => {
+        // Los datos se ingresaron correctamente
         let data = response.data;
+
+        // Se decompila el string identificador para guardarse en store
         let meta = JSON.parse(data.visitante.identificador);
 
         let visitante = data.visitante;
         visitante.identificador = meta;
 
+        // Se despacha la variable visitante en la aplicación
         $store.dispatch('setVisitante', visitante);
 
         $f7.dialog.alert(`Gracias! ya podemos comenzar con las preguntas`, () => {
           $f7.loginScreen.close();
         });
 
+        console.log(`[+] Se registro el visitante en el sistema ID: ${visitante.id_visitante} | ${visitante.uuid}`, visitante);
+
       }).catch((err) => {
+        // No se pudo conectar con el servidor ???
         console.error(err);
         $f7.dialog.alert(`Lo siento no se pudo crear un usuario, intentalo de nuevo mas tarde`, () => {
           $f7.loginScreen.close();

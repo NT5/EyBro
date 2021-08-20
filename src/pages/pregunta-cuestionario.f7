@@ -56,6 +56,28 @@
                     </a>
                 </div>
             </div>
+
+            <!-- Popup -->
+            <div class="popup" id="mensaje-pregunta">
+                <div class="view">
+                    <div class="page">
+                        <div class="navbar">
+                            <div class="navbar-bg"></div>
+                            <div class="navbar-inner">
+                                <div class="title"><i class="icon material-icons">info</i></div>
+                                <div class="right">
+                                    <a href="#" class="link popup-close"><i class="icon material-icons">close</i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page-content text-align-center">
+                            <div class="block">
+                                <h1>${pregunta.mensaje}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -67,6 +89,7 @@
         const pregunta_id = props.id_pregunta;
 
         const pregunta_actual = $store.getters.pregunta_actual;
+        const visitante = $store.getters.visitante;
 
         let pregunta = {
             id_cuestionario: -1,
@@ -104,6 +127,35 @@
                 pregunta = json;
                 console.log(pregunta);
                 $update();
+                if (pregunta.mensaje) {
+                    console.log(`[+] La pregunta tiene un mensaje, abriendo popup`);
+                    $f7.popup.open('#mensaje-pregunta');
+                }
+            });
+        };
+
+        const responderPregunta = (respuesta_id) => {
+            let visitante_id = parseInt(visitante.value.id_visitante);
+
+            // API Endpoint
+            let api_url = config.api_url;
+            let request_url = `${api_url}/preguntas/registreNuevaRespuesta`;
+
+            $f7.request({
+                url: request_url,
+                method: 'POST',
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                data: {
+                    id_visitante: visitante_id,
+                    cuestionario_id: cuestionario_id,
+                    id_pregunta: pregunta_id,
+                    id_respuesta: respuesta_id
+                }
+            }).then((response) => {
+                console.log(`[+] Pregunta respondida ${request_url}`);
+                let data = response.data;
+                console.log(data);
             });
         };
 
@@ -113,6 +165,8 @@
                 $f7.dialog.alert(`Por favor responde la pregunta para continuar.`);
                 return;
             }
+
+            responderPregunta(respuesta_pregunta);
 
             console.log(`[?] Pregunta respondida: ${respuesta_pregunta}`);
 
@@ -135,7 +189,7 @@
             $('input[name=radio]:checked').prop('checked', false);
 
             // Se cargan los datos de la pregunta desde el servidor
-            cargarPregunta(cuestionario_id, pregunta_id)
+            cargarPregunta(cuestionario_id, pregunta_id);
         });
 
         return $render;

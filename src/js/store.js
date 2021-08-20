@@ -29,7 +29,7 @@ const store = createStore({
   actions: {
     cargarCuestionario({ state, dispatch }, { cuestionario_id, api_url }) {
       let request_url = `${api_url}/cuestionarios/getCuestionarioById`;
-      console.log(`[+] Pidiendo datos desde ${api_url}`);
+      console.log(`[+] Pidiendo datos desde ${request_url}`);
       request({
         url: request_url,
         method: 'POST',
