@@ -6,16 +6,19 @@
         <div class="left">
           <a href="#" class="link back">
             <i class="icon icon-back"></i>
-            <span class="if-not-md">Back</span>
           </a>
         </div>
-        <div class="title">Not found</div>
+        <div class="title">Pagina no encontrada</div>
       </div>
     </div>
     <div class="page-content">
-      <div class="block block-strong">
-        <p>Sorry</p>
-        <p>Requested content not found.</p>
+      <div class="block block-strong text-align-center">
+        <h1 class="text-color-red">
+          <i class="icon material-icons">warning</i> La vista solicitada no fue encontrada en la aplicación
+        </h1>
+      </div>
+      <div class="block-title text-align-center">
+        <h1><i class="icon material-icons">dangerous</i></h1>
       </div>
     </div>
   </div>

@@ -28,7 +28,7 @@ import App from '../app.f7';
 
 var app = new Framework7({
   name: 'EyBro', // App name
-  theme: 'md', // Automatic theme detection
+  theme: 'aurora', // Automatic theme detection
   el: '#app', // App root element
   component: App, // App main component
   // App store

@@ -11,50 +11,61 @@
                 <div class="title">👊 ¡Ey! Bro...</div>
             </div>
         </div>
-        <div class="page-content display-flex flex-direction-column justify-content-center">
-            <div class="block block-strong">
-                <div class="card">
-                    <div class="card-content card-content-padding text-align-center">
-                        <div class="row">
-                            <div class="col">
-                                <h1>${pregunta.pregunta_texto}</h1>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="list">
-                                    <ul>
-                                        ${pregunta.posibles_respuestas.map((item) => $h`
-                                        <li>
-                                            <label class="item-radio item-content">
-                                                <input type="radio" name="radio" value="${item.id_respuesta}" />
-                                                <i class="icon icon-radio"></i>
-                                                <div class="item-inner">
-                                                    <div class="item-title">${item.respuesta_texto}</div>
-                                                </div>
-                                            </label>
-                                        </li>
-                                        `)}
-                                    </ul>
+        <div class="page-content">
+            <div class="display-flex justify-content-space-between align-items-flex-start">
+                <div class="flex-shrink-0"></div>
+                <div class="align-self-center content-box-warp">
+                    <!-- Card de pregunta -->
+                    <div class="block block-strong">
+                        <div class="card">
+                            <div class="card-content card-content-padding text-align-center">
+                                <div class="row">
+                                    <div class="col">
+                                        <h1>${pregunta.pregunta_texto}</h1>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="list">
+                                            <ul>
+                                                ${pregunta.posibles_respuestas.map((item) => $h`
+                                                <li>
+                                                    <label class="item-radio item-content">
+                                                        <input type="radio" name="radio" value="${item.id_respuesta}" />
+                                                        <i class="icon icon-radio"></i>
+                                                        <div class="item-inner">
+                                                            <div class="item-title">${item.respuesta_texto}</div>
+                                                        </div>
+                                                    </label>
+                                                </li>
+                                                `)}
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- Fin -->
+
+                    <!-- Botones -->
+                    <div class="row block">
+                        <div class="col">
+                            <button @click=${siguientePregunta} class="button button-large button-fill">
+                                <i class="icon material-icons">play_arrow</i> Siguiente >>>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row block">
+                        <div class="col">
+                            <a href="/" class="button button-large button-fill">
+                                <i class="icon material-icons">play_arrow</i> Salir
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Fin botones -->
                 </div>
-            </div>
-            <div class="row block">
-                <div class="col">
-                    <button @click=${siguientePregunta} class="button button-large button-fill">
-                        <i class="icon material-icons">play_arrow</i> Siguiente >>>
-                    </button>
-                </div>
-            </div>
-            <div class="row block">
-                <div class="col">
-                    <a href="/" class="button button-large button-fill">
-                        <i class="icon material-icons">play_arrow</i> Salir
-                    </a>
-                </div>
+                <div class="align-self-flex-end"></div>
             </div>
 
             <!-- Popup -->
@@ -78,6 +89,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Fin Popup -->
         </div>
     </div>
 </template>
@@ -177,7 +189,7 @@
             if (!siguiente_pregunta) {
                 $f7.dialog.alert(`Gracias por responder mis preguntas! 🙌 tu respuesta serán de gran ayuda`);
                 $f7router.navigate({
-                    name: 'home'
+                    name: 'cuestionario-despedida'
                 });
             } else {
                 $store.dispatch('setPreguntaActual', siguiente_pregunta);

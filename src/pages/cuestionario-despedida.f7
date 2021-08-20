@@ -1,0 +1,38 @@
+<template>
+    <div class="page" data-name="cuestionario-despedida">
+        <div class="navbar">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="/" class="link">
+                        <i class="icon icon-back"></i>
+                    </a>
+                </div>
+                <div class="title">👊 ¡Ey! Bro... ¡Gracias!</div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="display-flex justify-content-space-between align-items-flex-start">
+                <div class="flex-shrink-0"></div>
+                <div class="align-self-center content-box-wrap">
+                    <div class="block block-strong">
+                        <div class="block block-strong">
+                            <div class="card">
+                                <div class="card-content card-content-padding text-align-center">
+                                    <h1>${cuestionario.value.mensaje_despedida}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="align-self-flex-end"></div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default (props, { $, $f7, $f7router, $store, $on, $update }) => {
+        const cuestionario = $store.getters.cuestionario;
+        return $render;
+    };
+</script>
