@@ -26,9 +26,9 @@
                     </div>
                     <div class="row block">
                         <div class="col">
-                            <a href="/pregunta-cuestionario/cuestionario/${cuestionario.value.cuestionario_id}/pregunta/${pregunta_actual.value.id_pregunta}"
-                                class="button button-large button-fill" data-transition="f7-cover">
-                                <i class="icon material-icons">play_arrow</i> Empecemos!
+                            <a href="#" class="button button-large button-fill" @click=${empezarCuestionario}>
+                                <i class="icon material-icons">play_arrow</i>
+                                Empecemos!
                             </a>
                         </div>
                     </div>
@@ -54,6 +54,28 @@
                 cuestionario_id: cuestionario_id,
                 api_url: api_url
             });
+        };
+
+        const empezarCuestionario = () => {
+            let visitante_activo = visitante.value.id_visitante;
+
+            if (visitante_activo) {
+                $f7router.navigate(
+                    {
+                        name: 'pregunta-cuestionario',
+                        params: {
+                            id_cuestionario: cuestionario.value.cuestionario_id,
+                            id_pregunta: pregunta_actual.value.id_pregunta
+                        },
+                    },
+                    {
+                        transition: 'f7-cover'
+                    }
+                );
+            } else {
+                console.warn(`[-] Aun no se registra el visitante...`);
+                $f7.loginScreen.open('#login-datos-visitante');
+            }
         };
 
         $on('pageMounted', (e, page) => {

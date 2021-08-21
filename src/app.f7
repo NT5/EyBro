@@ -11,62 +11,111 @@
             <div class="login-screen-title">Cuéntame sobre ti 🤔</div>
             <div class="list">
               <ul>
-                <li class="item-content item-input">
+
+                <li class="item-content item-input item-input-outline item-input-with-info">
                   <div class="item-inner">
-                    <div class="item-title item-label">¿Quieres decirme tu nombre o al menos un sobrenombre con el cual
-                      suelen llamarte?</div>
+                    <div class="item-title item-floating-label">
+                      ¿Como te llamas?
+                    </div>
                     <div class="item-input-wrap">
-                      <input type="text" name="usuario" placeholder="¿Como te llamas?" value="${usuario}"
-                        @input="${updateUsuario}" autocomplete="off" />
+                      <input type="text" placeholder="¿Como te llamas?" value="${usuario}" @input="${updateUsuario}"
+                        autocomplete="off" />
+                    </div>
+                    <div class="item-input-info">
+                      ¿Quieres decirme tu nombre o al menos un sobrenombre con el cual
+                      suelen llamarte?
                     </div>
                   </div>
                 </li>
-                <li class="item-content item-input">
+                <br />
+                <hr />
+
+                <li class="item-content item-input item-input-outline item-input-with-info">
                   <div class="item-inner">
-                    <div class="item-title item-label">¿Quieres decirme en que centro estudias?</div>
+                    <div class="item-title item-floating-label">
+                      ¿A que escuela vas?
+                    </div>
                     <div class="item-input-wrap">
-                      <input type="text" name="centro_estudio" placeholder="¿A que escuela vas?"
-                        value="${centro_estudio}" @input="${updateCentroEstudio}" autocomplete="off" />
+                      <input type="text" placeholder="¿A que escuela vas?" value="${centro_estudio}"
+                        @input="${updateCentroEstudio}" autocomplete="off" />
+                    </div>
+                    <div class="item-input-info">
+                      ¿Quieres decirme en que centro estudias?
                     </div>
                   </div>
                 </li>
-                <li class="item-content item-input">
+                <br />
+                <hr />
+
+                <li class="item-content item-input item-input-outline item-input-with-info">
                   <div class="item-inner">
-                    <div class="item-title item-label">¿Quieres decirme en que municipio y departamento se ubica tu
-                      centro educativo?</div>
+                    <div class="item-title item-floating-label">
+                      ¿De donde eres?
+                    </div>
                     <div class="item-input-wrap">
-                      <input type="text" name="departamento" placeholder="¿De donde eres?" value="${departamento}"
+                      <input type="text" placeholder="¿De donde eres?" value="${departamento}"
                         @input="${updateDepartamento}" autocomplete="off" />
                     </div>
+                    <div class="item-input-info">
+                      ¿Quieres decirme en que municipio y departamento se ubica tu
+                      centro educativo?
+                    </div>
                   </div>
                 </li>
-                <li class="item-content item-input">
+                <br />
+                <hr />
+
+                <li class="item-content item-input item-input-outline item-input-with-info">
                   <div class="item-inner">
-                    <div class="item-title item-label">¿Quieres decirme que grado cursas actualmente?</div>
+                    <div class="item-title item-floating-label">
+                      ¿En que grado vas?
+                    </div>
                     <div class="item-input-wrap">
-                      <input type="text" name="grado_cursado" placeholder="¿En que grado vas?" value="${grado_cursado}"
+                      <input type="number" placeholder="¿En que grado vas?" value="${grado_cursado}"
                         @input="${updateGradoCursado}" autocomplete="off" />
                     </div>
-                  </div>
-                </li>
-                <li class="item-content item-input">
-                  <div class="item-inner">
-                    <div class="item-title item-label">¿Y como se llama tu maestro o maestra tutor?</div>
-                    <div class="item-input-wrap">
-                      <input type="text" name="tutor" placeholder="¿Tu maestro?" value="${tutor}"
-                        @input="${updateTutor}" autocomplete="off" />
+                    <div class="item-input-info">
+                      ¿Quieres decirme que grado cursas actualmente?
                     </div>
                   </div>
                 </li>
-                <li class="item-content item-input">
+                <br />
+                <hr />
+
+                <li class="item-content item-input item-input-outline item-input-with-info">
                   <div class="item-inner">
-                    <div class="item-title item-label">¿Quieres decirme que edad tienes?</div>
+                    <div class="item-title item-floating-label">
+                      ¿Tu maestro?
+                    </div>
                     <div class="item-input-wrap">
-                      <input type="text" name="edad" placeholder="¿Cuantos años tienes?" value="${edad}"
-                        @input="${updateEdad}" autocomplete="off" />
+                      <input type="text" placeholder="¿Tu maestro?" value="${tutor}" @input="${updateTutor}"
+                        autocomplete="off" />
+                    </div>
+                    <div class="item-input-info">
+                      ¿Y como se llama tu maestro o maestra tutor?
                     </div>
                   </div>
                 </li>
+                <br />
+                <hr />
+
+                <li class="item-content item-input item-input-outline item-input-with-info">
+                  <div class="item-inner">
+                    <div class="item-title item-floating-label">
+                      ¿Cuantos años tienes?
+                    </div>
+                    <div class="item-input-wrap">
+                      <input type="number" placeholder="¿Cuantos años tienes?" value="${edad}" @input="${updateEdad}"
+                        autocomplete="off" />
+                    </div>
+                    <div class="item-input-info">
+                      ¿Quieres decirme que edad tienes?
+                    </div>
+                  </div>
+                </li>
+                <br />
+                <hr />
+
               </ul>
             </div>
             <div class="list">
@@ -100,17 +149,17 @@
 <script>
   import { v4 as uuidv4 } from 'uuid';
 
-  export default (props, { $f7, $update, $on, $store }) => {
+  export default (props, { $f7, $update, $on, $store, $f7router }) => {
     // Plugin de configuración
     const config = $f7.config;
 
     // Datos del usuario
-    let usuario = 'Anónimo';
-    let centro_estudio = 'Anónimo';
-    let departamento = 'Anónimo';
-    let grado_cursado = 'Anónimo';
-    let tutor = 'Anónimo';
-    let edad = 'Anónimo';
+    let usuario = '';
+    let centro_estudio = '';
+    let departamento = '';
+    let grado_cursado = '';
+    let tutor = '';
+    let edad = '';
 
     // Métodos para actualizar las variables locales de la pagina de registro
     const updateUsuario = (e) => {
@@ -145,6 +194,19 @@
       // API Endpoint
       let request_url = `${api_url}/visitante/registreVisitante`;
 
+      let default_send = 'Anónimo';
+
+      if (
+        usuario.length <= 0 &&
+        centro_estudio.length <= 0 &&
+        departamento.length <= 0 &&
+        grado_cursado.length <= 0 &&
+        tutor.length <= 0 &&
+        edad.length <= 0
+      ) {
+        $f7.dialog.alert(`No respondiste algunas de las preguntas, no te preocupes serán enviadas de manera anónima 😊`);
+      }
+
       $f7.request({
         url: request_url,
         method: 'POST',
@@ -153,12 +215,12 @@
         data: {
           uuid: uuidv4(), // Librería uuid
           identificador: JSON.stringify({ // Se crea un objeto y se convierte a string para enviarlo al servidor
-            usuario: usuario,
-            centro_estudio: centro_estudio,
-            departamento: departamento,
-            grado_cursado: grado_cursado,
-            tutor: tutor,
-            edad: edad,
+            usuario: usuario || default_send,
+            centro_estudio: centro_estudio || default_send,
+            departamento: departamento || default_send,
+            grado_cursado: grado_cursado || default_send,
+            tutor: tutor || default_send,
+            edad: edad || default_send,
           })
         }
       }).then((response) => {
