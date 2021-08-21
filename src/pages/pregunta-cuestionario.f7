@@ -63,7 +63,7 @@
                     </div>
                     <div class="row block">
                         <div class="col">
-                            <a href="/" class="button button-large button-fill color-red">
+                            <a href="#" class="button button-large button-fill color-red" @click=${salirAInicio}>
                                 <i class="icon material-icons">close</i> Salir
                             </a>
                         </div>
@@ -181,6 +181,14 @@
                 console.log(`[+] Pregunta respondida en el servidor ${request_url}`);
                 let data = response.data;
                 console.log(data);
+            });
+        };
+
+        const salirAInicio = (props, context) => {
+            $f7.dialog.confirm(`Seguro que quieres salir?`, function () {
+                $f7router.navigate('/');
+                // Se borra el visitante
+                $store.dispatch('setVisitante', {});
             });
         };
 

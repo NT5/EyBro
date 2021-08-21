@@ -42,6 +42,11 @@ var app = new Framework7({
       }
     },
   },
+  dialog: {
+    // set default title for all dialog shortcuts
+    buttonOk: 'Ok',
+    buttonCancel: 'Cancelar'
+  },
   // Register service worker (only on production build)
   serviceWorker: process.env.NODE_ENV === 'production' ? {
     path: '/service-worker.js',
