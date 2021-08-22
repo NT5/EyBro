@@ -33,10 +33,46 @@
 <script>
     export default (props, { $, $f7, $f7router, $store, $on, $update }) => {
         const cuestionario = $store.getters.cuestionario;
+        const visitante = $store.getters.visitante;
+        const config = $f7.config;
+
+        const sendEmail = () => {
+            return new Promise(function (resolve, reject) {
+                // API Endpoint
+                let api_url = config.api_url;
+                let request_url = `${api_url}/SendEmail`;
+
+                $f7.request({
+                    url: request_url,
+                    method: 'POST',
+                    contentType: 'application/x-www-form-urlencoded',
+                    dataType: 'json',
+                    data: {
+                        visitante_id: visitante.value.id_visitante,
+                        token: visitante.value.uuid
+                    }
+                }).then((response) => {
+                    console.log(`[+] Se envió el callback para preparar el correo electrónico ${request_url}`);
+                    let data = response.data;
+                    console.log(data);
+                    resolve(data);
+                }).catch((err) => {
+                    console.error(err);
+                    reject(err);
+                });
+            });
+        };
 
         $on('pageInit', (e, page) => {
             // Se borra el visitante
-            $store.dispatch('setVisitante', {});
+            sendEmail().then(() => {
+                console.log(`[+] Visitante borrado y correo enviado.`);
+                $store.dispatch('setVisitante', {});
+            }).catch((err) => {
+                console.error(err);
+                console.log(`[+] Visitante borrado y correo NO enviado.`);
+                $store.dispatch('setVisitante', {});
+            });
         });
 
         return $render;
