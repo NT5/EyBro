@@ -31,7 +31,7 @@
                                                 ${pregunta.posibles_respuestas.map((item) => $h`
                                                 <li>
                                                     <label class="item-radio item-content item-input-with-info">
-                                                        <input type="radio" name="radio" value="-1" />
+                                                        <input type="radio" name="radio" value="${item.id_respuesta}" />
                                                         <i class="icon icon-radio"></i>
                                                         <div class="item-inner">
                                                             <div

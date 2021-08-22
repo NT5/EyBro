@@ -21,11 +21,14 @@
         <div class="flex-shrink-0"></div>
         <div class="align-self-center content-box-wrap">
           <div class="block block-strong">
+            <div class="block text-align-center">
+              <img data-src="img/banner.webp" class="lazy lazy-fade-in" alt="icon" width="80%" />
+            </div>
             <div class="row">
               <div class="col">
                 <a href="#" class="button button-raised button-fill login-screen-open color-teal"
                   data-login-screen="#login-datos-visitante">
-                  <i class="icon material-icons">help</i> Cuéntame quien eres!
+                  <i class="icon material-icons">help</i> Cuéntame, ¿Quién eres?
                 </a>
               </div>
             </div>

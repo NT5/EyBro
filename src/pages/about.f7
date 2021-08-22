@@ -30,6 +30,42 @@
               autoridades e instituciones correspondientes puedan brindarles.
             </h2>
           </div>
+          <div class="block-title"><i class="icon material-icons">description</i> Estudiantes encargados del proyecto
+          </div>
+          <div class="block block-strong text-align-center">
+            <div class="row">
+              <div class="col-50">
+                <div class="card bg-color-teal">
+                  <div class="card-header">
+                    <i class="icon material-icons">person</i>
+                    Marian Guadalupe Castellanos Alvarez
+                  </div>
+                </div>
+              </div>
+              <div class="col-50">
+                <div class="card bg-color-teal">
+                  <div class="card-header">
+                    <i class="icon material-icons">person</i>
+                    Jehu Azael Sánchez Álvarez
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="block-footer text-align-center">
+                  <h3>Estudiantes del Instituto Nacional de Segovia "Leonardo Matute"</h3>
+                  <h3>
+                    Departamento: Nueva Segovia
+                    <br />
+                    Municipio: Ocotal
+                    <br />
+                    Asignatura: Educación Para Aprender, Emprender, Prosperar.
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="align-self-flex-end"></div>
       </div>
