@@ -20,6 +20,7 @@ export default {
     outDir: BUILD_DIR,
     assetsInlineLimit: 0,
     emptyOutDir: true,
+    manifest: true
   },
   server: {
     host: '0.0.0.0',

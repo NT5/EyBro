@@ -66,6 +66,14 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col">
+              <div class="block-footer text-align-right">
+                <a class="external" target="_blank" href="https://mzdevocotal.com">mzdevocotal.com </a>
+                ${$f7.name} v${$f7.version}
+              </div>
+            </div>
+          </div>
         </div>
         <div class="align-self-flex-end"></div>
       </div>
@@ -73,7 +81,12 @@
   </div>
 </template>
 <script>
-  export default () => {
+  export default (props, { $, $f7, $on }) => {
+
+    $on('pageInit', (e, page) => {
+      console.warn('[?] No me pagan lo suficiente');
+    });
+
     return $render;
   };
 </script>
