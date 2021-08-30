@@ -64,20 +64,6 @@
 </template>
 <script>
   export default (props, { $, $f7, $f7router, $store, $on, $update }) => {
-    $('.login-screen').on('loginscreen:open', function (e) {
-      console.log('Login screen open');
-      let usuario = '';
-      let centro_estudio = '';
-      let departamento = '';
-      let grado_cursado = '';
-      let tutor = '';
-      let edad = '';
-    });
-
-    $('.login-screen').on('loginscreen:close', function (e) {
-      console.log('Login screen close');
-    });
-
     return $render;
   }
 </script>

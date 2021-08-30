@@ -19,7 +19,7 @@
           <div class="block-title"><i class="icon material-icons">info</i> Acerca de la aplicación</div>
           <div class="block block-strong text-align-center">
             <h2>
-              La aplicación digital “¡Ey! Bro… Solo Entre Vos y Yo… es una alternativa digital, amigable, fácil,
+              La aplicación digital "¡Ey! Bro… Solo Entre Vos y Yo…" es una alternativa digital, amigable, fácil,
               accesible y ajustada a la detección de diferentes delitos de los cuales están padeciendo muchos chavalos y
               chavalas de nuestras edad, e incluso de menos edad, que por miedo a reacciones adversas no logran romper
               el silencio ante algún adulto del cual están siendo víctimas en el entorno familiar, escolar, comunitario
@@ -34,7 +34,7 @@
           </div>
           <div class="block block-strong text-align-center">
             <div class="row">
-              <div class="col-50">
+              <div class="large-50 small-100">
                 <div class="card bg-color-teal">
                   <div class="card-header">
                     <i class="icon material-icons">person</i>
@@ -42,7 +42,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-50">
+              <div class="large-50 small-100">
                 <div class="card bg-color-teal">
                   <div class="card-header">
                     <i class="icon material-icons">person</i>
@@ -70,7 +70,7 @@
             <div class="col">
               <div class="block-footer text-align-right">
                 <a class="external" target="_blank" href="https://mzdevocotal.com">mzdevocotal.com </a>
-                ${$f7.name} v${$f7.version}
+                ${$f7.name} v${$f7.version} / API v${api_version}
               </div>
             </div>
           </div>
@@ -81,10 +81,22 @@
   </div>
 </template>
 <script>
-  export default (props, { $, $f7, $on }) => {
+  export default (props, { $, $f7, $on, $update }) => {
+    // Plugins
+    const api = $f7.api;
+
+    let api_version = "...";
 
     $on('pageInit', (e, page) => {
       console.warn('[?] No me pagan lo suficiente');
+
+      api.info().then((response) => {
+        let data = response.data;
+        api_version = data.ajax.version;
+        $update();
+      }).catch((err) => {
+        console.error(`[-] No se pudo obtener la información del servidor`, err);
+      });
     });
 
     return $render;

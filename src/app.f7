@@ -130,8 +130,8 @@
                 </li>
               </ul>
               <div class="block-footer">
-                ¡Ey! Bro … Solo Entre vos y Yo…
-                <br />
+                <p>¡Ey! Bro... Solo Entre vos y Yo...</p>
+                <p><a href="#" class="link login-screen-close">Regresar</a></p>
               </div>
             </div>
           </div>
@@ -149,9 +149,9 @@
 <script>
   import { v4 as uuidv4 } from 'uuid';
 
-  export default (props, { $f7, $update, $on, $store, $f7router }) => {
-    // Plugin de configuración
-    const config = $f7.config;
+  export default (props, { $f7, $, $update, $on, $store, $f7router }) => {
+    // Plugins
+    const api = $f7.api;
 
     // Datos del usuario
     let usuario = '';
@@ -186,14 +186,24 @@
       edad = e.target.value;
       $update();
     }
+    const defaultValues = () => {
+      usuario = '';
+      centro_estudio = '';
+      departamento = '';
+      grado_cursado = '';
+      tutor = '';
+      edad = '';
+      console.log(`[-] Valores de login reseteados`);
+      $update();
+    };
+    const closeLoginScreen = () => {
+      defaultValues();
+      $f7.loginScreen.close();
+    };
 
     // Registra al visitante
     const registrarVisitante = () => {
-      let api_url = config.api_url;
-
-      // API Endpoint
-      let request_url = `${api_url}/visitante/registreVisitante`;
-
+      // Datos enviados por defecto
       let default_send = 'Anónimo';
 
       if (
@@ -207,23 +217,23 @@
         $f7.dialog.alert(`No respondiste algunas de las preguntas, no te preocupes serán enviadas de manera anónima 😊`);
       }
 
-      $f7.request({
-        url: request_url,
-        method: 'POST',
-        contentType: 'application/x-www-form-urlencoded',
-        dataType: 'json',
-        data: {
-          uuid: uuidv4(), // Librería uuid
-          identificador: JSON.stringify({ // Se crea un objeto y se convierte a string para enviarlo al servidor
-            usuario: usuario || default_send,
-            centro_estudio: centro_estudio || default_send,
-            departamento: departamento || default_send,
-            grado_cursado: grado_cursado || default_send,
-            tutor: tutor || default_send,
-            edad: edad || default_send,
-          })
-        }
-      }).then((response) => {
+      // Se crea un objeto y se convierte a string para enviarlo al servidor
+      let meta_data = JSON.stringify({
+        usuario: usuario || default_send,
+        centro_estudio: centro_estudio || default_send,
+        departamento: departamento || default_send,
+        grado_cursado: grado_cursado || default_send,
+        tutor: tutor || default_send,
+        edad: edad || default_send,
+      });
+
+      // variable que se enviá al API
+      let data_send = {
+        uuid: uuidv4(), // Librería uuid
+        identificador: meta_data
+      };
+
+      api.visitante.registrar(data_send).then((response) => {
         // Los datos se ingresaron correctamente
         let data = response.data;
 
@@ -237,7 +247,7 @@
         $store.dispatch('setVisitante', visitante);
 
         $f7.dialog.alert(`Gracias! ya podemos comenzar con las preguntas`, () => {
-          $f7.loginScreen.close();
+          closeLoginScreen();
         });
 
         console.log(`[+] Se registro el visitante en el sistema ID: ${visitante.id_visitante} | ${visitante.uuid}`, visitante);
@@ -246,7 +256,7 @@
         // No se pudo conectar con el servidor ???
         console.error(err);
         $f7.dialog.alert(`Lo siento no se pudo crear un usuario, intentalo de nuevo mas tarde`, () => {
-          $f7.loginScreen.close();
+          closeLoginScreen();
         });
       });
     }

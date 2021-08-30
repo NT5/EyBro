@@ -40,6 +40,7 @@
 </template>
 <script>
     export default (props, { $, $f7, $f7router, $store, $on, $update }) => {
+        // Plugins
         const config = $f7.config;
 
         const cuestionario = $store.getters.cuestionario;
@@ -54,6 +55,11 @@
                 cuestionario_id: cuestionario_id,
                 api_url: api_url
             });
+        };
+
+        const openRegistro = () => {
+            console.warn(`[-] Aun no se registra el visitante...`);
+            $f7.loginScreen.open('#login-datos-visitante');
         };
 
         const empezarCuestionario = () => {
@@ -73,8 +79,7 @@
                     }
                 );
             } else {
-                console.warn(`[-] Aun no se registra el visitante...`);
-                $f7.loginScreen.open('#login-datos-visitante');
+                openRegistro();
             }
         };
 
@@ -85,13 +90,8 @@
                 console.log(`[+] Visitante listo, cargando cuestionario`);
                 cargarCuestionario();
             } else {
-                console.warn(`[-] Aun no se registra el visitante...`);
-                $f7.loginScreen.open('#login-datos-visitante');
+                openRegistro();
             }
-        });
-
-        $('.login-screen').on('loginscreen:open', function (e) {
-            console.log('Login screen open')
         });
 
         $('.login-screen').on('loginscreen:close', function (e) {

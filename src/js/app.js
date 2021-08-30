@@ -15,9 +15,10 @@ import routes from './routes.js';
 import store from './store.js';
 
 // Plugins
-import configPlugin from './plugins/config';
+import configPlugin from './plugins/config.js';
+import ApiPlugin from './plugins/api.js';
 
-Framework7.use([configPlugin]);
+Framework7.use([configPlugin, ApiPlugin]);
 
 // Import main app component
 import App from '../app.f7';
@@ -42,6 +43,14 @@ var app = new Framework7({
         window.f7 = f7;
       }
     },
+    connection: function (isOnline) {
+      if (isOnline) {
+        console.log('app is online now');
+      } else {
+        app.dialog.alert(`⚡ La aplicación no tiene una conexión a internet, para el correcto funcionamiento se recomienda usar una conexión estable como WiFi`);
+        console.log('app is offline now');
+      }
+    }
   },
   dialog: {
     // set default title for all dialog shortcuts
